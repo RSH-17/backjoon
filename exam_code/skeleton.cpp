@@ -1,4 +1,6 @@
 #include <iostream>
+#include "../header.h"
+
 using namespace std;
 
 /////////////////////////////////
@@ -25,7 +27,7 @@ using namespace std;
 
 /////////////////////////////////
 
-int main()
+int _main()
 {
     return 0;
 }
