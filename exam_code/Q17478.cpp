@@ -2,6 +2,8 @@
 #include <string>
 using namespace std;
 
+#include "../header.h"
+
 /////////////////////////////////
 /*
 문제:
@@ -75,7 +77,7 @@ void printStr(int n, int reverse);
 
 /////////////////////////////////
 
-int main()
+int _main()
 {
     int n;
     cin >> n;

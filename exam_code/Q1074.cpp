@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+#include "../header.h"
+
 /////////////////////////////////
 /*
 문제: 
@@ -44,7 +46,7 @@ int getNumVisited(int pow2n, int r, int c);
 /////////////////////////////////
 // Main
 
-int main()
+int _main()
 {
     int n, r, c, pow2n = 1;
     cin >> n >> r >> c;

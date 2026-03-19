@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+#include "../header.h"
+
 /////////////////////////////////
 /*
 문제:
@@ -44,7 +46,7 @@ using namespace std;
 
 /////////////////////////////////
 
-int main()
+int _main()
 {
     int n;
     cin >> n;
