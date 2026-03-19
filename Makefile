@@ -2,30 +2,30 @@
 CXX = g++
 
 # 컴파일 옵션 설정
-CXXFLAGS = -Wall -O2 -std=c++17
+CXXFLAGS = -Wall -O2 -std=c++17 -finput-charset=UTF-8 -fexec-charset=cp949
 # -Wall: 모든 경고 메시지 출력
 # -O2: 최적화 레벨 2 (성능 향상)
 # -std=c++17: C++17 표준 사용
 
-# 컴파일할 소스 파일 이름을 외부에서 지정할 수 있도록 변수로 설정(main.cpp는 항상 포함)
-FILE ?= Q2557.cpp
-
 # 최종 생성될 실행 파일 이름
 TARGET = app
 
-# 컴파일할 소스 파일(.cpp) 목록
-SRCS = main.cpp .\exam_code\$(FILE)
+all:
+	@echo "Usage: make [ProblemNumber] (e.g. make 2557)"
 
-# 문자열 치환을 이용하여 .cpp를 .o로 변경하여 목적 파일(.o) 목록 생성
-OBJS = $(SRCS:.cpp=.o)
-
-# -c 옵션 없이 바로 실행 파일(-o)로 묶어버립니다. (.o 파일이 아예 안 생김)
-$(TARGET): $(SRCS)
-	$(CXX) $(CXXFLAGS) $(SRCS) -o $(TARGET)
+%:
+	@if exist .\exam_code\$@.cpp ( \
+		$(CXX) $(CXXFLAGS) main.cpp .\exam_code\$@.cpp -o $(TARGET) && \
+		echo [Success] $(TARGET).exe file has been created successfully. \
+	) else ( \
+		echo [Error] .\exam_code\$@.cpp file not found. & \
+		echo Please check if the .cpp file for the specified problem number exists in the folder. \
+	)
 
 # 빌드 과정에서 생성된 파일들 삭제 규칙
 clean:
-	del /f /q $(OBJS) $(TARGET).exe
+	del /f /q $(TARGET).exe
+# 	del /f /q $(OBJS) $(TARGET).exe
 
 #=================================================================================
 
@@ -45,3 +45,16 @@ clean:
 # -c 옵션은 컴파일만 하고 링크는 하지 말라는 의미입니다. .o 파일이 생성됩니다.
 # $<는 첫 번째 의존성 파일 (여기서는 .cpp 파일)
 # -o $@는 만들어질 결과물, 현재 목표 -> 생성될.o 파일 이름
+
+# 컴파일할 소스 파일 이름을 외부에서 지정할 수 있도록 변수로 설정(main.cpp는 항상 포함)
+# FILE ?= Q2557.cpp
+
+# 컴파일할 소스 파일(.cpp) 목록
+# SRCS = main.cpp .\exam_code\$(FILE)
+
+# 문자열 치환을 이용하여 .cpp를 .o로 변경하여 목적 파일(.o) 목록 생성
+# OBJS = $(SRCS:.cpp=.o)
+
+# -c 옵션 없이 바로 실행 파일(-o)로 묶어버립니다. (.o 파일이 아예 안 생김)
+# $(TARGET): $(SRCS)
+# 	$(CXX) $(CXXFLAGS) $(SRCS) -o $(TARGET)
